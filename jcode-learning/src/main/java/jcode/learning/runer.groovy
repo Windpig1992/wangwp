@@ -16,3 +16,45 @@ for (String s1 : list) {
         println s1
     }
 }
+
+
+FileReader momentReader = new FileReader(new File("/Users/wangwenping/Desktop/tencent/adgroup/moment.txt"))
+BufferedReader momentBufferedReader = new BufferedReader(momentReader)
+List<Long> momentAdGroupIds = new ArrayList<>()
+while (true) {
+    String str = momentBufferedReader.readLine()
+    if (str == null) {
+        break
+    }
+    momentAdGroupIds.add(Long.valueOf(str))
+}
+
+
+FileReader gdtReader = new FileReader(new File("/Users/wangwenping/Desktop/tencent/adgroup/gdt.txt"))
+BufferedReader gdtBufferedReader = new BufferedReader(gdtReader)
+List<Long> gdtAdGroupIds = new ArrayList<>()
+while (true) {
+    String str = gdtBufferedReader.readLine()
+    if (str == null) {
+        break
+    }
+    gdtAdGroupIds.add(Long.valueOf(str))
+}
+
+
+FileReader asyncReader = new FileReader(new File("/Users/wangwenping/Desktop/tencent/adgroup/async.txt"))
+BufferedReader asyncBufferedReader = new BufferedReader(asyncReader)
+List<Long> asyncAdGroupIds = new ArrayList<>()
+while (true) {
+    String str = asyncBufferedReader.readLine()
+    if (str == null) {
+        break
+    }
+    asyncAdGroupIds.add(Long.valueOf(str))
+}
+
+gdtAdGroupIds.addAll(momentAdGroupIds)
+
+asyncAdGroupIds.removeAll(gdtAdGroupIds)
+
+println asyncAdGroupIds
